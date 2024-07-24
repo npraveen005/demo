@@ -1116,7 +1116,7 @@ async function updateLikeDislikeBtns(){
 
 function playSong(track){
 	stopCurrentAudio();
-	const username = JSON.parse(localStorage.getItem('loggedInUser'));
+	// const username = JSON.parse(localStorage.getItem('loggedInUser'));
 
 	//updating the cover image, song title and artist name
 	playbackTrackImgs.forEach(playbackTrackImg => playbackTrackImg.src = (track.album && track.album.images)? track.album.images[2].url : `./${track.coverImgUrl}`);
@@ -1139,15 +1139,15 @@ function playSong(track){
 
 	currentTrack = track;
 
-	fetch(`/${username}/listening-to`, {
-		method: "POST",
-		headers:{
-			"Content-Type": "application/json"
-		},
-		body: JSON.stringify(track)
-	})
-	.then(result => console.log("Updated listening to"))
-	.catch(err => console.log(err));
+	// fetch(`/${username}/listening-to`, {
+	// 	method: "POST",
+	// 	headers:{
+	// 		"Content-Type": "application/json"
+	// 	},
+	// 	body: JSON.stringify(track)
+	// })
+	// .then(result => console.log("Updated listening to"))
+	// .catch(err => console.log(err));
 
 	//displaying the lyrics
 	fetch(`https://api.lyrics.ovh/v1/${currentTrack.artists[0].name}/${currentTrack.name}`)
