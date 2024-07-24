@@ -110,7 +110,8 @@ searchBar.addEventListener("keyup", async (e) => {
 	else{
 		try{
 			searchResults.append("Loading...");
-			const localTracks = await searchLocalTracks(e.target.value);
+			// const localTracks = await searchLocalTracks(e.target.value);
+			const localTracks = [];
 			const tracks = await searchTrack(token, e.target.value);
 
 			searchResults.innerHTML = '';
