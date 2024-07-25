@@ -48,6 +48,35 @@ setInterval(() => {
 	getSpotifyToken(clientId, clientSecret).then((t) => token = t);
 }, TOKEN_EXPIRY_TIME);
 
+(function() {
+	var newUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36';
+	
+	if (navigator.__defineGetter__) {
+	  navigator.__defineGetter__('userAgent', function() {
+		return newUserAgent;
+	  });
+	} else if (Object.defineProperty) {
+	  Object.defineProperty(navigator, 'userAgent', {
+		get: function() {
+		  return newUserAgent;
+		}
+	  });
+	}
+	console.log('Set User Agent to ' + newUserAgent);
+	
+	if (navigator.__defineGetter__) {
+	  navigator.__defineGetter__('platform', function() {
+		return 'Win32';
+	  });
+	} else if (Object.defineProperty) {
+	  Object.defineProperty(navigator, 'platform', {
+		get: function() {
+		  return 'Win32';
+		}
+	  });
+	}
+})();
+
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
 	let options = {
 		width: '100%',
